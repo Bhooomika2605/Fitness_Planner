@@ -12,10 +12,10 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
 # Initialize GenAI client
-client = genai.Client(api_key="AIzaSyDMLx7XULAkS8gxhU2fXERJxHnzlt7BauU")
+client = genai.Client(api_key="__")
 
 # # Initialize MongoDB connection
-mongo_client = MongoClient("mongodb+srv://survebhoomika:Ch5E0WClHGyRFkP9@cluster0.1snpk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongo_client = MongoClient("""""")
 db = mongo_client["fitness_tracker"]
 users_collection = db["users"]
 
