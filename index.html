@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Welcome to AIMx Fitness</h1>
+        <p class="lead">Your AI-powered fitness companion for personalized workout, diet, and wellbeing plans.</p>
+        {% if 'user_id' not in session %}
+        <div class="mt-4">
+            <a href="{{ url_for('register') }}" class="btn btn-light btn-lg me-2">Get Started</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Log In</a>
+        </div>
+        {% else %}
+        <div class="mt-4">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-light btn-lg">Go to Dashboard</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h4 class="card-title">Workout Plans</h4>
+                <p class="card-text">Get personalized workout plans tailored to your fitness level, goals, and available time.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h4 class="card-title">Diet Recommendations</h4>
+                <p class="card-text">Receive customized diet plans that align with your fitness goals and dietary preferences.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h4 class="card-title">Mental Wellbeing</h4>
+                <p class="card-text">Improve your mental health with personalized meditation, journaling, and daily practices.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-center mb-5">
+    <div class="col-md-6 mb-4">
+        <h2>How It Works</h2>
+        <p>AIMx Fitness uses advanced AI to create personalized fitness plans based on your unique profile:</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Create your profile with your fitness goals</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Generate personalized workout, diet, and wellbeing plans</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Track your progress and update your plans as needed</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Achieve your fitness goals with AI guidance</li>
+        </ul>
+    </div>
+    <div class="col-md-6 mb-4">
+        <img src="https://via.placeholder.com/600x400?text=AIMx+Fitness" class="img-fluid rounded shadow" alt="AIMx Fitness">
+    </div>
+</div>
+{% endblock %}

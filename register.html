@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">Create Your Profile</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('register') }}">
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <h5><i class="fas fa-user me-2"></i>User Information</h5>
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label">Choose a User ID</label>
+                        <input type="text" class="form-control" id="user_id" name="user_id" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 mb-4">
+                    <h5><i class="fas fa-dumbbell me-2"></i>Workout Information</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" name="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="fitness_level" class="form-label">Fitness Level</label>
+                        <select class="form-select" id="fitness_level" name="fitness_level" required>
+                            <option value="">Select fitness level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="fitness_goals" class="form-label">Fitness Goals</label>
+                        <input type="text" class="form-control" id="fitness_goals" name="fitness_goals" placeholder="e.g., Weight Loss, Muscle Gain, Endurance" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="medical_conditions" class="form-label">Medical Conditions (if any)</label>
+                        <input type="text" class="form-control" id="medical_conditions" name="medical_conditions">
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="workout_duration" class="form-label">Workout Duration (minutes)</label>
+                            <input type="number" class="form-control" id="workout_duration" name="workout_duration" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="days_per_week" class="form-label">Days Per Week</label>
+                            <input type="number" class="form-control" id="days_per_week" name="days_per_week" min="1" max="7" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 mb-4">
+                    <h5><i class="fas fa-utensils me-2"></i>Diet Information</h5>
+                    <div class="mb-3">
+                        <label for="dietary_restrictions" class="form-label">Dietary Restrictions</label>
+                        <input type="text" class="form-control" id="dietary_restrictions" name="dietary_restrictions" placeholder="e.g., Vegetarian, Vegan, Dairy-free">
+                    </div>
+                    <div class="mb-3">
+                        <label for="food_allergies" class="form-label">Food Allergies</label>
+                        <input type="text" class="form-control" id="food_allergies" name="food_allergies" placeholder="e.g., Nuts, Gluten, Seafood">
+                    </div>
+                </div>
+                
+                <div class="col-md-12 mb-4">
+                    <h5><i class="fas fa-brain me-2"></i>Mental Wellbeing</h5>
+                    <div class="mb-3">
+                        <label for="stress_level" class="form-label">Stress Level</label>
+                        <select class="form-select" id="stress_level" name="stress_level" required>
+                            <option value="">Select stress level</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sleep_quality" class="form-label">Sleep Quality (hours)</label>
+                        <input type="number" class="form-control" id="sleep_quality" name="sleep_quality" min="1" max="24" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg">Create Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

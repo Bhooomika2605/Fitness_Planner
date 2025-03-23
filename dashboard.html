@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="jumbotron mb-4">
+    <h1 class="display-5">Welcome to Your Dashboard, {{ user.user_id }}</h1>
+    <p class="lead">Generate and view your personalized fitness plans below.</p>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Your Plans</h5>
+                <div>
+                    <a href="{{ url_for('generate_all') }}" class="btn btn-light btn-sm">Generate All Plans</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Workout Plan Card -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card plan-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Workout Plan</h5>
+                                <a href="{{ url_for('generate_workout') }}" class="btn btn-sm btn-outline-light">
+                                    <i class="fas fa-sync-alt"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                {% if workout_plan %}
+                                <div class="mb-3">
+                                    <h6><i class="far fa-clock me-2"></i>Time</h6>
+                                    <p>{{ workout_plan.time }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-running me-2"></i>Type</h6>
+                                    <p>{{ workout_plan.type }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-dumbbell me-2"></i>Exercises</h6>
+                                    <div>
+                                        {% for exercise in workout_plan.exercises %}
+                                        <span class="exercise-badge">{{ exercise }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-exclamation-triangle me-2"></i>Precautions</h6>
+                                    <p>{{ workout_plan.precautions }}</p>
+                                </div>
+                                {% else %}
+                                <div class="text-center py-4">
+                                    <p>No workout plan generated yet.</p>
+                                    <a href="{{ url_for('generate_workout') }}" class="btn btn-primary">Generate Workout Plan</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Diet Plan Card -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card plan-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Diet Plan</h5>
+                                <a href="{{ url_for('generate_diet') }}" class="btn btn-sm btn-outline-light">
+                                    <i class="fas fa-sync-alt"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                {% if diet_plan %}
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-fire me-2"></i>Calories</h6>
+                                    <p>{{ diet_plan.calories }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-apple-alt me-2"></i>Diet Type</h6>
+                                    <p>{{ diet_plan.diet_type }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-utensils me-2"></i>Recommendations</h6>
+                                    <ul class="list-unstyled">
+                                        {% for recommendation in diet_plan.recommendations %}
+                                        <li><i class="fas fa-check-circle text-success me-2"></i>{{ recommendation }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="far fa-clock me-2"></i>Meal Timing</h6>
+                                    <p>{{ diet_plan.meal_timing }}</p>
+                                </div>
+                                {% else %}
+                                <div class="text-center py-4">
+                                    <p>No diet plan generated yet.</p>
+                                    <a href="{{ url_for('generate_diet') }}" class="btn btn-primary">Generate Diet Plan</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wellbeing Plan Card -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card plan-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Wellbeing Plan</h5>
+                                <a href="{{ url_for('generate_wellbeing') }}" class="btn btn-sm btn-outline-light">
+                                    <i class="fas fa-sync-alt"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                {% if wellbeing_plan %}
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-spa me-2"></i>Meditation</h6>
+                                    <p>{{ wellbeing_plan.meditation }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-book me-2"></i>Journaling</h6>
+                                    <p>{{ wellbeing_plan.journaling }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <h6><i class="fas fa-heart me-2"></i>Daily Practice</h6>
+                                    <p>{{ wellbeing_plan.daily_practice }}</p>
+                                </div>
+                                {% else %}
+                                <div class="text-center py-4">
+                                    <p>No wellbeing plan generated yet.</p>
+                                    <a href="{{ url_for('generate_wellbeing') }}" class="btn btn-primary">Generate Wellbeing Plan</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Quick Stats</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-4">
+                        <h3>{{ user.workout_history|length }}</h3>
+                        <p class="text-muted">Workout Plans</p>
+                    </div>
+                    <div class="col-4">
+                        <h3>{{ user.diet_history|length }}</h3>
+                        <p class="text-muted">Diet Plans</p>
+                    </div>
+                    <div class="col-4">
+                        <h3>{{ user.wellbeing_history|length }}</h3>
+                        <p class="text-muted">Wellbeing Plans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Quick Tips</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-arrow-circle-right text-primary me-2"></i>Update your profile to get more accurate plans</li>
+                    <li class="list-group-item"><i class="fas fa-arrow-circle-right text-primary me-2"></i>Generate new plans as your fitness level improves</li>
+                    <li class="list-group-item"><i class="fas fa-arrow-circle-right text-primary me-2"></i>Check your history to see your progress over time</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
